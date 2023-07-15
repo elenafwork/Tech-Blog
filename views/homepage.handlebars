@@ -4,7 +4,9 @@
     <h2> HOMEPAGE</h2>
   </div>
   <div class="col-md-6">
-    <h3></h3>
+    {{#each posts as |post|}}
+    {{>post}}
+    {{/each}}
   </div>
 </div>
 

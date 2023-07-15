@@ -1,22 +1,22 @@
 const router = require('express').Router();
-const { Post } = require('../models');
-const { Comments} =require('../models')
+const { Post ,User, Comments} = require('../models');
+
 const withAuth = require('../utils/auth');
 
 router.get('/',  async (req, res) => {
   console.log('LOOK HERE');
   
   try {
-    const allPostsData = await Post.findAll({
-      attributes: [['title', 'content']],
-     //order: [['created_on', 'DSC']],
-    });
+    console.log('---------------------------------------------------------');
+    
+    const allPostsData = await Post.findAll(
+      //attributes: [['username', 'created_on','title', 'content']],
+    );
 
     const posts = allPostsData.map((post) => post.get({ plain: true }));
 
     res.render('homepage', {
-      posts,
-      
+      posts,      
     });
   } catch (err) {
     res.status(500).json(err);

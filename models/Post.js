@@ -25,9 +25,15 @@ Post.init(
         type: DataTypes.INTEGER,
     },
     created_on: {
-        type: DataTypes.STRING,
-        allowNull: false
-    }
+      type: DataTypes.DATEONLY,
+      defaultValue: DataTypes.NOW,
+      allowNull: false
+    },
+    updated_on: {
+      type: DataTypes.DATEONLY,
+      defaultValue: DataTypes.NOW,
+      allowNull: true
+    },
       
     },
     {

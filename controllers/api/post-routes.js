@@ -1,16 +1,18 @@
 const router = require('express').Router();
-const { Post } = require('../../models');
+const { Post, User, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 //all posts
 router.get('/', async (res,req) => {
   try{
-    const allPostsData= await Post.findAll
-    ({
-      include: [{ model: User}, {model: Comment }],
-    });
+    console.log('================================================');
+    
+    const allPostsData= await Post.findAll()
+    // ({
+    //   include: [{ model: User}, {model: Comment }],
+    // });
     res.status(200).json(allPostsData);
   }  catch(err){
-    res.status(500).json(err);
+    //res.status(500).json(err);
   }
 });
 
@@ -32,16 +34,35 @@ router.get('/:id', async (req, res) => {
     }
     
   });
+//creating post
+////no auth
+router.post('/', async (req,res) => {
+  try {
+    const newPost=await Post.create({
+        title: req.body.title,
+        content: req.body.content,
+        user_id: req.body.user_id,
+        })
+     res.status(200).json(newPost);
 
+
+  }catch(err){
+     res.status(400).json(err)
+  }
+})
 //creating comment
-router.post('/:id/comment', withAuth,  async (req,res) => {
+router.post('/:id/comment', async (req,res) => {
     try{
+       console.log('-----------------------------------------------------------------------');
+       
         const commentData=await Comment.create({
+            post_id: req.body.post_id,
             comment_content: req.body.comment_content,
+            user_id: req.body.user_id
         });
         res.status(200).json(commentData);
     } catch(err){
-        res.status(500).json(err);
+        res.status(400).json(err);
     }
 });
 
