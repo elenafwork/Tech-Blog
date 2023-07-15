@@ -3,12 +3,19 @@ const { User, Post } = require('../models');
 const withAuth = require('../utils/auth');
 router.use(withAuth);
 router.get('/', withAuth, async(req,res) =>{
+  //console.log('YOU FOUND IT');
+  
     try {
-        const postData = await Post.findAll({
-          attributes: 'title',
-          order: [['title', 'DSC']],
+        console.log('TRYING');
+        console.log(req.session.user_id);
+        
+        const postData = await Post.findAll({ where:
+          { user_id: req.session.user_id},
+          attributes:  ['title'],
+          //order: [['title', 'DSC']],
         });
-    
+         console.log(postData);
+         
         const posts = postData.map((post) => post.get({ plain: true }));
     
         res.render('dashboard', { 
@@ -16,7 +23,10 @@ router.get('/', withAuth, async(req,res) =>{
           logged_in: req.session.logged_in,
         });
       } catch (err) {
+        console.log('ERROR');
+        
         res.status(500).json(err);
+        
       }
 });
 
@@ -84,5 +94,14 @@ router.put('/:id', withAuth, async (req, res) => {
     }
     
    });
+
+  //  router.get('/', async (req,res) => {
+  //   if (req.session.logged_in) {
+  //     res.redirect('/');
+  //     return;
+  //   }
+  
+  //   res.render('login');
+  //  } );
 
    module.exports = router;

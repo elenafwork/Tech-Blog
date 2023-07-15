@@ -25,7 +25,7 @@ Post.init(
         type: DataTypes.INTEGER,
     },
     created_on: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING,
         allowNull: false
     }
       

@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Post } = require('../../models');
 const withAuth = require('../../utils/auth');
 //all posts
-router.get('/posts', async (res,req) => {
+router.get('/', async (res,req) => {
   try{
     const allPostsData= await Post.findAll
     ({
@@ -44,5 +44,6 @@ router.post('/:id/comment', withAuth,  async (req,res) => {
         res.status(500).json(err);
     }
 });
+
 
 module.exports=router;
