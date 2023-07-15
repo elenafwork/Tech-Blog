@@ -15,15 +15,15 @@ Comment.init(
             type: DataTypes.INTEGER,
         },
         comment_content: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: false,
         },
         user_id: {
             type: DataTypes.INTEGER,
          },
         created_on: {
-            type: DataTypes.DATE,
-            allowNull: false,
+            type: DataTypes.DATEONLY,
+            defaultValue: DataTypes.NOW
         },
 
     },

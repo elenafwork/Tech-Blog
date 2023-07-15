@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Tech Blog</title>
+  <link rel="stylesheet" type="text/css" href="/css/jass.css">
+
+   <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+  
+</head>
+
+<body id="body">
+  <header class="navbar  bg-success display-flex justify-space-between align-center p-2" ata-bs-theme="dark">
+    <h1>
+      The Tech Blog
+    </h1>
+    <nav >
+      <ul>
+        <li><a href="/" id="homepage">Homepage</a></li>
+        <li><a href="/dashboard" id="dashboard">Dashboard</a></li>
+        
+        <li> {{#if loggedIn}}
+    <button id="logout" class="btn-no-style">Logout</button>
+    {{else}}
+    <!-- Otherwise, show a link to login -->
+    <a href="/login">Login</a>
+    {{/if}}</li>
+       
+       </ul>
+    
+    {{#if logged_in}}
+    
+      <button class="btn" id="logout">logout</button>
+    </nav>
+    {{/if}}
+
+  </header>
+  <main class="container container-fluid mt-5 ">
+    {{{ body }}}
+  </main>
+  <footer>
+      
+  </footer>
+  <script src="./js/script.js"></script>
+  {{#if logged_in}}
+  <script src="./js/logout.js"></script>
+  {{/if}}
+  
+  
+  
+</body>
+
+</html>
