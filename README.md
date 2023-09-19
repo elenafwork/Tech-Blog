@@ -8,7 +8,7 @@ a CMS-style blog site similar to a Wordpress site, where developers can publish 
   - [Description](#description)
   - [Technology Used](#technology)
   - [Resources](#resources)
-  - [Credits](#credits)
+ 
   - [License](#license)
   - [Questions](#questions)
 
@@ -25,17 +25,12 @@ a CMS-style blog site similar to a Wordpress site, where developers can publish 
   - Bootstrap
   ## Resources
   Deployed web application on Heroku:
-  https://elenafwork.github.io/React-Portfolio/
+  https://salty-oasis-43384-02f21f181f63.herokuapp.com/
   
   The deployed application snippet:
 <p align="left">
   <img src="src/images/Screenshot.png" width="600" title="webpage">
 
- ## Credits
-Special acknowledge of:
-- PedroTech, "Animation in React - Framer-Motion Tutorial", https://www.youtube.com/watch?v=GOuwOI-WSkE&ab_channel=PedroTech
-- [Storyset.com](https://storyset.com/) for free illustrations 
-- [icon8.com](https://icons8.com/) for free icons
 
   ## License
   Licensed under [MIT License ](https://opensource.org/licenses/MIT)
