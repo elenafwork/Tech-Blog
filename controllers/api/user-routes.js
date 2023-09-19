@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 const withAuth = require('../../utils/auth');
+//login route
 router.post('/login', async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });
@@ -25,7 +26,7 @@ router.post('/login', async (req, res) => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
       
-      res.json({ user: userData, message: 'You are now logged in!' });
+      res.render('dashboard',{ user: userData, message: 'You are now logged in!' });
     });
 
   } catch (err) {
@@ -33,6 +34,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
+//logout
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
@@ -52,17 +54,13 @@ router.post('/', async (req, res) => {
       password: req.body.password,
     });
 
-    // // Set up sessions with the 'loggedIn' variable
-    // req.session.save(() => {
-    //   // Set the 'loggedIn' session variable to 'true'
-    //   req.session.loggedIn=true
-    // if (req.session.loggedIn){
-    //   return true;
-    // }
-    // res.render("homepage", {
-    //    loggedIn: req.session.loggedIn
-    // }
-    // )
+    req.session.save(() => {
+      req.session.user_id = dbUserData.id;
+			req.session.username = dbUserData.username;
+      req.session.loggedIn = true;
+      res.status(200).json(dbUserData);
+    });
+
       res.status(200).json(dbUserData);
     //});
   } catch (err) {
